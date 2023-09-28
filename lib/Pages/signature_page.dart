@@ -10,6 +10,7 @@ class SiganturePage extends StatefulWidget {
 
   @override
   State<SiganturePage> createState() => _SiganturePageState();
+  
 }
 
 class _SiganturePageState extends State<SiganturePage> {
@@ -45,12 +46,15 @@ class _SiganturePageState extends State<SiganturePage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
-                      onPressed: () async {
-                        exportedImage = await controller.toPngBytes();
-                        print(exportedImage); 
-                        setState(() {});
-                      },
-                      child: Text("Save Signature")),
+                    onPressed: () async {
+                      exportedImage = await controller.toPngBytes();
+
+                      print(exportedImage);
+
+                      setState(() {});
+                    },
+                    child: Text("Save Signature"),
+                  ),
                 )
               ],
             )
