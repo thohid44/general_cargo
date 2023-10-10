@@ -40,11 +40,14 @@ class _ProductUploadPageState extends State<ProductUploadPage> {
           )),
 
           Expanded(child: 
-          Center(
-            child: (result !=null)?Text("Result: ${result!.code}"):Text("Scan a Code"), 
-
-          )), 
+          Container(
+            
+            child: Center(
+              child: (result !=null)?Text("Result: ${result!.code}"):Text("Scan a Code"), 
           
+            ),
+          )), 
+
         ],
       ),
     );
