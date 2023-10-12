@@ -1,25 +1,28 @@
-
+// To parse this JSON data, do
+//
+//     final productListModel = productListModelFromJson(jsonString);
 
 import 'dart:convert';
 
 ProductListModel productListModelFromJson(String str) => ProductListModel.fromJson(json.decode(str));
 
 
+
 class ProductListModel {
-    String? message;
+    
     Paginator? paginator;
 
     ProductListModel({
-        this.message,
+      
         this.paginator,
     });
 
     factory ProductListModel.fromJson(Map<String, dynamic> json) => ProductListModel(
-        message: json["message"],
+      
         paginator: Paginator.fromJson(json["paginator"]),
     );
 
- 
+   
 }
 
 class Paginator {
@@ -74,7 +77,7 @@ class Paginator {
 
 class Datum {
     int? id;
-    var date;
+    DateTime? date;
     String? invoiceNo;
     String? status;
     String? deliveryMode;
@@ -155,7 +158,7 @@ class Datum {
         signatureDate: json["signature_date"],
     );
 
-   
+    
 }
 
 class Link {

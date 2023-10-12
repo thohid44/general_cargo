@@ -16,7 +16,7 @@ class AllProductView extends StatelessWidget {
         centerTitle: true,
       ),
       body: ListView.builder(
-              itemCount: controller.paginator!.data!.length,
+              itemCount: controller,
               itemBuilder: ((context, index) {
                 return Container(
                   child: Text(controller.paginator!.links![index].label.toString()),
