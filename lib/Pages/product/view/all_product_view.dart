@@ -8,20 +8,20 @@ class AllProductView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.getMyTrips();
+    controller.fetchProduct();
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
         title: Text("All Product"),
         centerTitle: true,
       ),
-      body: ListView.builder(
-              itemCount: controller.paginator!.data!.length,
+      body: Obx(() => controller.isLoading.value == false?ListView.builder(
+              itemCount:controller.productListModel!.paginator!.links!.length,
               itemBuilder: ((context, index) {
                 return Container(
-                  child: Text(controller.paginator!.links![index].label.toString()),
+                  child: Text(controller.productListModel!.paginator!.links![index].active.toString()),
                 );
-              }))
+              })):Center(child: CircularProgressIndicator()))
     ));
   }
 }

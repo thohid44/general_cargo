@@ -11,6 +11,7 @@ import 'package:http/http.dart' as http;
 class ProductController extends GetxController {
   var isLoading = false.obs;
 
+ ProductListModel? productListModel; 
   Paginator? paginator;
 
   final _box = GetStorage();
@@ -18,15 +19,16 @@ class ProductController extends GetxController {
   var pth;
   void onInit() {
     super.onInit();
+     fetchProduct();
   }
 
-  getMyTrips() async {
+  fetchProduct() async {
     var token = _box.read(LocalStoreKey.token);
 
     try {
       isLoading(true);
       var response = await http.get(
-        Uri.parse("${baseUrl}/product?page=2&status=DropOff"),
+        Uri.parse("${baseUrl}/product?page=1&status=DropOff"),
         headers: {
           'Accept': 'application/json',
           'Authorization': 'Bearer ' + token,
@@ -34,10 +36,12 @@ class ProductController extends GetxController {
       );
       if (response.statusCode == 202) {
         var jsonData = jsonDecode(response.body);
-        print(jsonData);
+     
 
-        Paginator data = Paginator.fromJson(jsonData);
-        paginator = data;
+       productListModel  = ProductListModel.fromJson(jsonData);
+      
+      
+           print("thohid koli ${productListModel!.paginator!.links!.first.label.toString()}");
         isLoading(false);
       }
     } catch (e) {
