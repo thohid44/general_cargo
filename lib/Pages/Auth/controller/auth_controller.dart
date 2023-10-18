@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:general_cargo/Pages/home_page.dart';
+import 'package:general_cargo/Pages/product/product.dart';
+import 'package:general_cargo/Pages/product/view/all_product_view.dart';
 import 'package:general_cargo/Utils/localstorekey.dart';
 import 'package:general_cargo/contrain/api_url.dart';
 import 'package:get/get.dart';
@@ -35,7 +37,7 @@ class AuthController extends GetxController {
 
         print(_box.read(LocalStoreKey.token));
         if (getToken != null) {
-          Get.offAll(HomePage());
+          Get.offAll(ProductView());
         }
       }
 
