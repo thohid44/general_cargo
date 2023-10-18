@@ -1,6 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:general_cargo/Pages/product/status_update_page.dart';
+import 'package:general_cargo/Utils/colors.dart';
+import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class ProductUploadPage extends StatefulWidget {
@@ -28,27 +31,45 @@ class _ProductUploadPageState extends State<ProductUploadPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            flex: 5,
-              child: QRView(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: lavenderColor,
+        ),
+        body: Column(
+          children: <Widget>[
+            Container(
+            height: 200,
+            margin: EdgeInsets.all(15),
+                child: QRView(
+              
+              key: qrKey,
+              onQRViewCreated: onQRViewCamera,
+            )),
+    
+           
+            Container(
+              
+              child: Center(
+                child: ElevatedButton.icon(onPressed: (){
+    
+                }, icon: Icon(Icons.qr_code), label: (result !=null)?Text("Result: ${result!.code}"):Text("Scan Product"), )
             
-            key: qrKey,
-            onQRViewCreated: onQRViewCamera,
-          )),
-
-          Expanded(child: 
-          Container(
-            
-            child: Center(
-              child: (result !=null)?Text("Result: ${result!.code}"):Text("Scan a Code"), 
-          
+              ),
             ),
-          )), 
-
-        ],
+    
+            Container(
+              
+              child: Center(
+                child: ElevatedButton.icon(onPressed: (){
+    Get.to(StatusUpdatePage());
+                }, icon: Icon(Icons.qr_code), label: Text("Update Status"), )
+            
+              ),
+            )
+    
+          ],
+        ),
       ),
     );
   }

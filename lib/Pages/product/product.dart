@@ -2,7 +2,11 @@ import 'dart:async';
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_pagination/flutter_pagination.dart';
+import 'package:flutter_pagination/widgets/button_styles.dart';
 import 'package:general_cargo/Pages/product/controller/product_controller.dart';
+import 'package:general_cargo/Pages/product/status_update_page.dart';
+import 'package:general_cargo/Pages/product_upload_page.dart';
 import 'package:general_cargo/Utils/colors.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +29,7 @@ class _ProductViewState extends State<ProductView> {
   void initState() {
    
   }
-
+   int currentPage = 1;
  var controller = Get.put(ProductController());
 
   @override
@@ -111,10 +115,44 @@ class _ProductViewState extends State<ProductView> {
               itemCount:controller.productListModel!.paginator!.links!.length,
               itemBuilder: ((context, index) {
                 return Container(
-                  child: Text(controller.productListModel!.paginator!.links![index].active.toString()),
+                  margin:const EdgeInsets.only(left: 15, right: 10, top: 15),
+                  decoration: const BoxDecoration(
+                        color: lavenderColor,
+                  ),
+                  child: ListTile(
+                    onTap: (){
+                      Get.to(ProductUploadPage());
+                    },
+                
+                    title: Text(controller.productListModel!.paginator!.links![index].active.toString()), 
+                    trailing: Icon(Icons.arrow_forward),
+                    ),
                 );
               })):Center(child: CircularProgressIndicator()))
              ),
+                            
+Pagination(
+            paginateButtonStyles: PaginateButtonStyles(
+             
+            ),
+            prevButtonStyles: PaginateSkipButton(
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    bottomLeft: Radius.circular(20))),
+            nextButtonStyles: PaginateSkipButton(
+                borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(20),
+                    bottomRight: Radius.circular(20))),
+            onPageChange: (number) {
+              setState(() {
+                currentPage = number;
+              });
+            },
+            useGroup: false,
+            totalPage: 4,
+            show: 2,
+            currentPage: currentPage,
+          )
           ],
         ),
       ),
