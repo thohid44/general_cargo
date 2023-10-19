@@ -1,90 +1,58 @@
-import 'dart:io';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:general_cargo/Pages/product/status_update_page.dart';
-import 'package:general_cargo/Utils/colors.dart';
-import 'package:get/get.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
-class ProductUploadPage extends StatefulWidget {
-  const ProductUploadPage({super.key});
+class ProductScannerPage extends StatefulWidget {
+
 
   @override
-  State<ProductUploadPage> createState() => _ProductUploadPageState();
+  State<ProductScannerPage> createState() => _ProductScannerPageState();
 }
 
-class _ProductUploadPageState extends State<ProductUploadPage> {
-  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+class _ProductScannerPageState extends State<ProductScannerPage> {
 
-  Barcode? result;
-  QRViewController? controller;
-
-  @override
-  void reassemble() {
-    super.reassemble();
-    if (Platform.isAndroid) {
-      controller!.pauseCamera();
-    } else if (Platform.isIOS) {
-      controller!.resumeCamera();
-    }
-  }
+  var getResult = 'QR Code Result';
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: lavenderColor,
-        ),
-        body: Column(
-          children: <Widget>[
-            Container(
-            height: 200,
-            margin: EdgeInsets.all(15),
-                child: QRView(
-              
-              key: qrKey,
-              onQRViewCreated: onQRViewCamera,
-            )),
-    
-           
-            Container(
-              
-              child: Center(
-                child: ElevatedButton.icon(onPressed: (){
-    
-                }, icon: Icon(Icons.qr_code), label: (result !=null)?Text("Result: ${result!.code}"):Text("Scan Product"), )
-            
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('QR Scanner'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                scanQRCode();
+              },
+              child: Text('Scan QR'),
             ),
-    
-            Container(
-              
-              child: Center(
-                child: ElevatedButton.icon(onPressed: (){
-    Get.to(StatusUpdatePage());
-                }, icon: Icon(Icons.qr_code), label: Text("Update Status"), )
-            
-              ),
-            )
-    
+            SizedBox(height: 20.0,),
+            Text(getResult),
           ],
-        ),
+        )
       ),
     );
   }
 
-  void onQRViewCamera(QRViewController controller) {
-    this.controller = controller;
-    controller.scannedDataStream.listen((scanData) {
+  void scanQRCode() async {
+    try{
+      final qrCode = await FlutterBarcodeScanner.scanBarcode('#ff6666', 'Cancel', true, ScanMode.QR);
+
+      if (!mounted) return;
+
       setState(() {
-        result = scanData;
+        getResult = qrCode;
       });
-    });
+      print("QRCode_Result:--");
+      print(qrCode);
+    } on PlatformException {
+      getResult = 'Failed to scan QR Code.';
+    }
+
   }
 
-  void dispose() {
-    controller?.dispose(); 
-    super.dispose();
-  }
 }

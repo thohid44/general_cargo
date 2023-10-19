@@ -121,7 +121,7 @@ class _ProductViewState extends State<ProductView> {
                   ),
                   child: ListTile(
                     onTap: (){
-                      Get.to(ProductUploadPage());
+                      Get.to(ProductScannerPage());
                     },
                 
                     title: Text(controller.productListModel!.paginator!.links![index].active.toString()), 
