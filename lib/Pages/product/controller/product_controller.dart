@@ -19,6 +19,7 @@ class ProductController extends GetxController {
   var pth;
   void onInit() {
     super.onInit();
+    getMyTrips();
   }
 
   getMyTrips() async {
@@ -35,10 +36,13 @@ class ProductController extends GetxController {
       );
       if (response.statusCode == 202) {
         var jsonData = jsonDecode(response.body);
-        print(jsonData);
+        // print(jsonData);
 
-    productListModel = ProductListModel.fromJson(jsonData); 
-       
+        ProductListModel data = ProductListModel.fromJson(jsonData);
+        productListModel = data;
+        paginator = data.paginator;
+        print(
+            " general cargo ${productListModel!.paginator!.links!}");
         isLoading(false);
       }
     } catch (e) {

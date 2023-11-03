@@ -11,17 +11,24 @@ class AllProductView extends StatelessWidget {
     controller.getMyTrips();
     return SafeArea(
         child: Scaffold(
-      appBar: AppBar(
-        title: Text("All Product"),
-        centerTitle: true,
-      ),
-      body: ListView.builder(
-              itemCount: controller,
-              itemBuilder: ((context, index) {
-                return Container(
-                  child: Text(controller.paginator!.links![index].label.toString()),
-                );
-              }))
-    ));
+            appBar: AppBar(
+              title: Text("All Product"),
+              centerTitle: true,
+            ),
+            body: Obx(
+              () => controller.isLoading.value == false
+                  ? ListView.builder(
+                      itemCount:
+                          controller.paginator!.links!.length,
+                      itemBuilder: ((context, index) {
+                        print(
+                            "length ${controller.paginator!.links!.length}");
+                        return Container(
+                          child: Text(
+                              "${controller.productListModel!.paginator!.links![index].url.toString()}"),
+                        );
+                      }))
+                  : Center(child: CircularProgressIndicator()),
+            )));
   }
 }

@@ -36,6 +36,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           Center(
             child: Container(
+              height: 45.h,
               width: 300.w,
               child: TextField(
                   controller: email,
@@ -51,6 +52,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           Center(
             child: Container(
+              height:45.h, 
               width: 300.w,
               child: TextField(
                   controller: password,
@@ -62,15 +64,15 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           SizedBox(
-            height: 20.h,
+            height: 40.h,
           ),
-         Obx(() => controller.isLoading.value ==false? InkWell(
+         Obx(() => controller.isLogin.value ==false? InkWell(
             onTap: () {
               controller.login(email.text.toString(), password.text.toString());
             },
             child: Container(
               height: 45,
-              width: 200,
+              width: 180,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                   color: Colors.blue, borderRadius: BorderRadius.circular(10)),

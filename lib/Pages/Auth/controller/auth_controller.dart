@@ -9,7 +9,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 class AuthController extends GetxController {
-  var isLogLoading = false.obs;
+  var isLogin= false.obs;
   var isLoading = false.obs;
   final _box = GetStorage();
   var userClient = http.Client();
@@ -19,7 +19,7 @@ class AuthController extends GetxController {
     try {
       print("object");
       var mapData = {"email": "admin@gmail.com", "password": '12345'};
-      isLogLoading(true);
+      isLogin(true);
       var response = await http.post(Uri.parse(url), 
       headers: {
         'Accept': 'application/json'
@@ -39,9 +39,9 @@ class AuthController extends GetxController {
         }
       }
 
-      isLoading(false);
+      isLogin(false);
     } catch (e) {
-      isLoading(false);
+      isLogin(false);
       print("Error $e");
     }
   }

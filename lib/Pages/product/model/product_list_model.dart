@@ -26,19 +26,19 @@ class ProductListModel {
 }
 
 class Paginator {
-    int? currentPage;
+    var currentPage;
     List<Datum>? data;
-    String? firstPageUrl;
-    int? from;
-    int? lastPage;
-    String? lastPageUrl;
+    var firstPageUrl;
+    var from;
+    var lastPage;
+    var lastPageUrl;
     List<Link>? links;
-    String? nextPageUrl;
-    String? path;
-    int? perPage;
-    String? prevPageUrl;
-    int? to;
-    int? total;
+    var nextPageUrl;
+    var path;
+    var perPage;
+    var prevPageUrl;
+    var to;
+    var total;
 
     Paginator({
         this.currentPage,
@@ -76,31 +76,31 @@ class Paginator {
 }
 
 class Datum {
-    int? id;
-    DateTime? date;
-    String? invoiceNo;
-    String? status;
-    String? deliveryMode;
-    dynamic image;
-    String? senderName;
-    String? senderPhone;
-    String? senderAddress;
-    String? receiverPhone;
-    String? receiverName;
-    String? receiverAddress;
-    String? productDescription;
-    String? quantity;
-    String? unit;
-    dynamic details;
-    int? bookBranchId;
-    int? desBranchId;
-    int? serviceTypeId;
-    String? bookBranch;
-    String? desBranch;
-    String? serviceType;
-    dynamic signatureUrl;
-    dynamic signatureUrlTwo;
-    dynamic signatureDate;
+    var id;
+    var date;
+    var invoiceNo;
+    var status;
+    var deliveryMode;
+    var image;
+    var senderName;
+    var senderPhone;
+    var senderAddress;
+    var receiverPhone;
+    var receiverName;
+    var receiverAddress;
+    var productDescription;
+    var quantity;
+    var unit;
+    var details;
+    var bookBranchId;
+    var desBranchId;
+    var serviceTypeId;
+    var bookBranch;
+    var desBranch;
+    var serviceType;
+    var signatureUrl;
+    var signatureUrlTwo;
+    var signatureDate;
 
     Datum({
         this.id,
@@ -162,8 +162,8 @@ class Datum {
 }
 
 class Link {
-    String? url;
-    String? label;
+    var url;
+    var label;
     bool? active;
 
     Link({
@@ -178,9 +178,4 @@ class Link {
         active: json["active"],
     );
 
-    Map<String, dynamic> toJson() => {
-        "url": url,
-        "label": label,
-        "active": active,
-    };
 }
