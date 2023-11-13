@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:general_cargo/Pages/product/view/all_product_view.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
@@ -34,7 +33,7 @@ class _HomePageState extends State<HomePage> {
           ),
           InkWell(
             onTap: () {
-              Get.to(AllProductView()); 
+          
             },
             child: Container(
               alignment: Alignment.center,
@@ -42,7 +41,7 @@ class _HomePageState extends State<HomePage> {
               height: 100,
               width: 100,
               margin: EdgeInsets.all(10),
-              child: Text(
+              child:const  Text(
                 "Product",
                 style: TextStyle(
                     fontSize: 14,

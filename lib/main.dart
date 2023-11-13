@@ -5,9 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:general_cargo/Pages/Auth/view/login_page.dart';
 import 'package:general_cargo/Pages/home_page.dart';
+import 'package:general_cargo/Pages/product/product.dart';
 import 'package:general_cargo/Utils/localstorekey.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+
+import 'Pages/product/status_update_page.dart';
 
 void main() {
   
@@ -39,7 +42,7 @@ class MyApp extends StatelessWidget {
       home: child
     ); 
       },
-      child:  LoginPage(),
+      child: StatusUpdatePage()
     );
   }
    final _box = GetStorage();

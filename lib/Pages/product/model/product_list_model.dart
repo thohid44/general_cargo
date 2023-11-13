@@ -1,64 +1,59 @@
-// To parse this JSON data, do
-//
-//     final productListModel = productListModelFromJson(jsonString);
-
 import 'dart:convert';
 
-ProductListModel productListModelFromJson(String str) => ProductListModel.fromJson(json.decode(str));
-
+ProductListModel productListModelFromJson(String str) =>
+    ProductListModel.fromJson(json.decode(str));
 
 
 class ProductListModel {
-    
-    Paginator? paginator;
+  String? message;
+  Paginator? paginator;
 
-    ProductListModel({
-      
-        this.paginator,
-    });
+  ProductListModel({
+    this.message,
+    this.paginator,
+  });
 
-    factory ProductListModel.fromJson(Map<String, dynamic> json) => ProductListModel(
-      
+  factory ProductListModel.fromJson(Map<String, dynamic> json) =>
+      ProductListModel(
+        message: json["message"],
         paginator: Paginator.fromJson(json["paginator"]),
-    );
-
-   
+      );
 }
 
 class Paginator {
-    var currentPage;
-    List<Datum>? data;
-    var firstPageUrl;
-    var from;
-    var lastPage;
-    var lastPageUrl;
-    List<Link>? links;
-    var nextPageUrl;
-    var path;
-    var perPage;
-    var prevPageUrl;
-    var to;
-    var total;
+  var currentPage;
+  //  List<Datum>? data;
+  var firstPageUrl;
+  var from;
+  var lastPage;
+  var lastPageUrl;
+  List<Link>? links;
+  var nextPageUrl;
+  var path;
+  var perPage;
+  var prevPageUrl;
+  var to;
+  var total;
 
-    Paginator({
-        this.currentPage,
-        this.data,
-        this.firstPageUrl,
-        this.from,
-        this.lastPage,
-        this.lastPageUrl,
-        this.links,
-        this.nextPageUrl,
-        this.path,
-        this.perPage,
-        this.prevPageUrl,
-        this.to,
-        this.total,
-    });
+  Paginator({
+    this.currentPage,
+    //  this.data,
+    this.firstPageUrl,
+    this.from,
+    this.lastPage,
+    this.lastPageUrl,
+    this.links,
+    this.nextPageUrl,
+    this.path,
+    this.perPage,
+    this.prevPageUrl,
+    this.to,
+    this.total,
+  });
 
-    factory Paginator.fromJson(Map<String, dynamic> json) => Paginator(
+  factory Paginator.fromJson(Map<String, dynamic> json) => Paginator(
         currentPage: json["current_page"],
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        //      data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
         firstPageUrl: json["first_page_url"],
         from: json["from"],
         lastPage: json["last_page"],
@@ -70,67 +65,65 @@ class Paginator {
         prevPageUrl: json["prev_page_url"],
         to: json["to"],
         total: json["total"],
-    );
-
-   
+      );
 }
 
 class Datum {
-    var id;
-    var date;
-    var invoiceNo;
-    var status;
-    var deliveryMode;
-    var image;
-    var senderName;
-    var senderPhone;
-    var senderAddress;
-    var receiverPhone;
-    var receiverName;
-    var receiverAddress;
-    var productDescription;
-    var quantity;
-    var unit;
-    var details;
-    var bookBranchId;
-    var desBranchId;
-    var serviceTypeId;
-    var bookBranch;
-    var desBranch;
-    var serviceType;
-    var signatureUrl;
-    var signatureUrlTwo;
-    var signatureDate;
+  var id;
+  var date;
+  var invoiceNo;
+  var status;
+  var deliveryMode;
+  dynamic image;
+  var senderName;
+  var senderPhone;
+  var senderAddress;
+  var receiverPhone;
+  var receiverName;
+  var receiverAddress;
+  var productDescription;
+  var quantity;
+  var unit;
+  dynamic details;
+  var bookBranchId;
+  var desBranchId;
+  var serviceTypeId;
+  var bookBranch;
+  var desBranch;
+  var serviceType;
+  dynamic signatureUrl;
+  dynamic signatureUrlTwo;
+  dynamic signatureDate;
 
-    Datum({
-        this.id,
-        this.date,
-        this.invoiceNo,
-        this.status,
-        this.deliveryMode,
-        this.image,
-        this.senderName,
-        this.senderPhone,
-        this.senderAddress,
-        this.receiverPhone,
-        this.receiverName,
-        this.receiverAddress,
-        this.productDescription,
-        this.quantity,
-        this.unit,
-        this.details,
-        this.bookBranchId,
-        this.desBranchId,
-        this.serviceTypeId,
-        this.bookBranch,
-        this.desBranch,
-        this.serviceType,
-        this.signatureUrl,
-        this.signatureUrlTwo,
-        this.signatureDate,
-    });
+  Datum({
+    this.id,
+    this.date,
+    this.invoiceNo,
+    this.status,
+    this.deliveryMode,
+    this.image,
+    this.senderName,
+    this.senderPhone,
+    this.senderAddress,
+    this.receiverPhone,
+    this.receiverName,
+    this.receiverAddress,
+    this.productDescription,
+    this.quantity,
+    this.unit,
+    this.details,
+    this.bookBranchId,
+    this.desBranchId,
+    this.serviceTypeId,
+    this.bookBranch,
+    this.desBranch,
+    this.serviceType,
+    this.signatureUrl,
+    this.signatureUrlTwo,
+    this.signatureDate,
+  });
 
-    factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json["id"],
         date: DateTime.parse(json["date"]),
         invoiceNo: json["invoice_no"],
@@ -156,26 +149,41 @@ class Datum {
         signatureUrl: json["signature_url"],
         signatureUrlTwo: json["signature_url_two"],
         signatureDate: json["signature_date"],
-    );
-
-    
+      );
 }
 
 class Link {
-    var url;
-    var label;
-    bool? active;
+  var url;
+  var label;
+  bool? active;
 
-    Link({
-        this.url,
-        this.label,
-        this.active,
-    });
+  Link({
+    this.url,
+    this.label,
+    this.active,
+  });
 
-    factory Link.fromJson(Map<String, dynamic> json) => Link(
+  factory Link.fromJson(Map<String, dynamic> json) => Link(
         url: json["url"],
         label: json["label"],
         active: json["active"],
-    );
+      );
 
+  Map<String, dynamic> toJson() => {
+        "url": url,
+        "label": label,
+        "active": active,
+      };
+
+  statusUpdate(id, status, image, signed, signed_two, e_signature_check, date) {
+    var map = {
+      "id": id,
+      "status": status,
+      "image": image,
+      "signed": signed,
+      "signed_two": signed_two,
+      "e_signature_check": e_signature_check,
+      "date": date
+    };
+  }
 }

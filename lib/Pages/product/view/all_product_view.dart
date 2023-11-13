@@ -8,7 +8,7 @@ class AllProductView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.getMyTrips();
+    controller.fetchProduct();
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
