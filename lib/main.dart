@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:general_cargo/Pages/Auth/view/login_page.dart';
 import 'package:general_cargo/Pages/home_page.dart';
-import 'package:general_cargo/Pages/product/product.dart';
+
 import 'package:general_cargo/Utils/localstorekey.dart';
+import 'package:general_cargo/screen/view/splash_screen.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
       home: child
     ); 
       },
-      child: StatusUpdatePage()
+      child: SplashScreen()
     );
   }
    final _box = GetStorage();
